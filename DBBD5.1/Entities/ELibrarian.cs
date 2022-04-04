@@ -17,6 +17,7 @@ namespace DBBD51
         public bool isGood = true;
 
         public ELibrarian() => isGood = false;
+
         public ELibrarian(int pK, string fIO, DateTime dateBirth)
         {
             PK = pK;

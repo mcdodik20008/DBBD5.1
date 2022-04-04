@@ -10,7 +10,6 @@ namespace DBBD51
             new List<string> { "id_Lk", "ФИО", "Дата рождения", "Телефонный номер", "Домашний адрес", "fkDir", "Направление", "Выдали всего", "Долг" },
             new List<bool> { false, true, true, true, true, false, true, true, true},
             new List<string> { "id_Lk", "fullName", "dateBirth", "phoneNumber", "homeAdres", "fk_dir", "", "", ""});
-        
 
         public int Pk;
         public string FIO;

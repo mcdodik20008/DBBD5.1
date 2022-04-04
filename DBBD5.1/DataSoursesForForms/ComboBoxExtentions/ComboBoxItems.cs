@@ -13,6 +13,5 @@ namespace DBBD51
         }
 
         public void Add(IComboBoxItem item) => cBItems.Add(item);
-        
     }
 }

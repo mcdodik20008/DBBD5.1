@@ -9,14 +9,12 @@ namespace DBBD51
         public static DataGridView DaraGrid(HeadDataGrid headDG)
         {
             int n = headDG.HeaderTest.Count;
-
             if (headDG.IsVisible == null)
             {
                 headDG.IsVisible = new List<bool>(n);
                 for (var i = 0; i < n; i++)
                     headDG.IsVisible.Add(true);
             }
-
             var nVisible = headDG.IsVisible.FindAll(x => x == true).Count;
             var dataGrid = new DataGridView();
             DataGridViewTextBoxColumn[] column = new DataGridViewTextBoxColumn[n];
@@ -28,7 +26,6 @@ namespace DBBD51
                 column[i].Visible = headDG.IsVisible[i];
             }
             dataGrid.Columns.AddRange(column);
-
             return dataGrid;
         }
         public static Button Button(string text, DockStyle Ds = DockStyle.None)

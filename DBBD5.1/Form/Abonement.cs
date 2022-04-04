@@ -24,15 +24,12 @@ namespace DBBD51
             }
             Labels.Add(new Label() { Text = "ФИО:", Width = 40 });
             Labels.Add(new Label() { Text = aboutReader[1], Width = 100 }); // фио
-
             Labels.Add(new Label() { Text = "Дата рождения:", Width = 100 });
             Labels.Add(new Label() { Text = aboutReader[2], Width = 70 }); // дата р
             Labels.Add(new Label() { Text = "Номер телефона:", Width = 100 });
             Labels.Add(new Label() { Text = aboutReader[3], Width = 80 }); // телефон номер 
-
             Labels.Add(new Label() { Text = "Домашний адрес:", Width = 100 });
             Labels.Add(new Label() { Text = aboutReader[4], Width = 100 }); // адрес
-
             Labels.Add(new Label() { Text = "Направление:", Width = 80 });
             Labels.Add(new Label() { Text = aboutReader[6], Width = 50 }); // направление
             dataGrid.Location = new Point(10, 70);
@@ -56,7 +53,6 @@ namespace DBBD51
                     && DataSourse.GetDataComboBoxs()[0][c1.SelectedIndex] is ComboBoxItemBook cBB)
                     tB.Text = cBB.NameAut;
             };
-
             var c2 = TextAndComboBox[2] as ComboBox;
             c2.SelectedIndexChanged += (sender, Empty) =>
             {
@@ -65,7 +61,6 @@ namespace DBBD51
                     if (tB.Text == "" || tB.Text == null)
                         tB.Text = DateTime.Now.ToString().Substring(0, 10);
             };
-
             var c3 = TextAndComboBox[4] as ComboBox;
             c3.SelectedIndexChanged += (sender, Empty) =>
             {

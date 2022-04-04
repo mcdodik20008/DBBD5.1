@@ -11,6 +11,7 @@ namespace DBBD51
         private IEnumerable<IEitem> dataSourse;
         private List<Control> textAndComboBox;
         public int GetMaxId() => SQL.maxIndex("SELECT MAx(id_book) From InSy.dbo.Book");
+
         public IDataSourse Update() => new DSReaders(textAndComboBox);
 
         public DSBook(List<Control> textAndComboBox)

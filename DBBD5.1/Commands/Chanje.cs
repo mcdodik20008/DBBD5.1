@@ -11,6 +11,7 @@ namespace DBBD51
         private IEitem newValues;
         private HeadDataGrid head;
         private string nameTable;
+
         public Chanje(DataGridView value, int pos, IEitem item)
         {
             oldValues = new List<string>();

@@ -8,10 +8,7 @@ namespace DBBD51
         List<string> values = new List<string>();
         List<Control> textAndCb;
         
-        public Сancel(List<Control> textAndCb)
-        {
-            this.textAndCb = textAndCb;
-        }
+        public Сancel(List<Control> textAndCb) => this.textAndCb = textAndCb;
 
         public void Command(DataGridView x)
         {

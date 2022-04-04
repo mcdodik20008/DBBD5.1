@@ -16,7 +16,6 @@ namespace DBBD51
 
         public void UnCommand(DataGridView x) =>
             x.Rows.RemoveAt(index);
-        
 
         public void SqveInSql() { }
     }

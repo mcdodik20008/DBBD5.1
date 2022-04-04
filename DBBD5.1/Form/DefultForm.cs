@@ -72,7 +72,6 @@ namespace DBBD51
                 x.Command(dataGrid);
                 Buttons[1].Enabled = Buttons[5].Enabled = true;
             };
-
             //отменить
             Buttons[1].Click += (sender, args) =>
             {
@@ -80,7 +79,6 @@ namespace DBBD51
                 if (Commands.Count() == 0)
                     Buttons[1].Enabled = Buttons[5].Enabled = false;
             };
-
             //очистить
             Buttons[2].Click += (sender, args) =>
             {
@@ -89,7 +87,6 @@ namespace DBBD51
                 Commands.Push(x);
                 Buttons[1].Enabled = true;
             };
-
             //новый
             Buttons[3].Click += (sender, args) =>
             {
@@ -114,7 +111,6 @@ namespace DBBD51
                     }
                 }
             };
-
             //изменить
             Buttons[4].Click += (sender, args) =>
             {
@@ -127,7 +123,6 @@ namespace DBBD51
                     Buttons[1].Enabled = Buttons[5].Enabled = true;
                 }
             };
-
             //сохранить
             Buttons[5].Click += (sender, args) =>
             {
@@ -143,7 +138,6 @@ namespace DBBD51
         {
             if (dataGrid.CurrentRow == null)
                 return;
-            
             var x = dataGrid.CurrentRow.Index;
             if (dataGrid.Rows[x].Cells[0].Value != null)
             {
@@ -154,7 +148,6 @@ namespace DBBD51
                     if (dataGrid.Rows[x].Cells[i].Value != null)
                         value = dataGrid.Rows[x].Cells[i].Value.ToString();
                     aboutCurrent.Add(value);
-
                     if (headDataGrid.IsVisible[i] && TextAndComboBox[j] is TextBox tb)
                         tb.Text = value;
                     if (headDataGrid.IsVisible[i] && TextAndComboBox[j] is ComboBox cb)

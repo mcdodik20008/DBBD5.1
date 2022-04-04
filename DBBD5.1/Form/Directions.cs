@@ -8,10 +8,9 @@ namespace DBBD51
     public class Directions : DefultForm
     {
         static HeadDataGrid inBaseConstructor = EDirections.HeadDataGrid;
-        public Directions() : base(inBaseConstructor)
-        {
-            InitializeComponent();
-        }
+
+        public Directions() : base(inBaseConstructor) => InitializeComponent();
+        
 
         internal override void Form_Load(object sender, EventArgs e)
         {
@@ -32,7 +31,5 @@ namespace DBBD51
         }
 
         internal override bool IsInputDontHaveErrors(List<Control> list) => true;
-
-
     }
 }

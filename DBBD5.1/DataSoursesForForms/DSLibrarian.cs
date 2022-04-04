@@ -10,7 +10,9 @@ namespace DBBD51
         private List<ComboBoxItems> ComboBoxOnForm = new List<ComboBoxItems>();
         private IEnumerable<IEitem> dataSourse;
         private List<Control> textAndComboBox;
+
         public int GetMaxId() => SQL.maxIndex("SELECT MAx(id_Librarian) From InSy.dbo.Librarian");
+
         public IDataSourse Update() => new DSLibrarian(textAndComboBox);
 
         public DSLibrarian(List<Control> textAndComboBox)
@@ -29,6 +31,7 @@ namespace DBBD51
 
         private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data) =>
              data.Select(x => new ELibrarian(int.Parse(x.ElementAt(0)), x.ElementAt(1), DateTime.Parse(x.ElementAt(2))));
+
         public List<ComboBoxItems> GetDataComboBoxs() => ComboBoxOnForm;
     }
 }

@@ -22,7 +22,6 @@ namespace DBBD51
 
         public void UnCommand(DataGridView dataGrid) =>
             dataGrid.Rows.Insert(position, values.ToArray());
-        
 
         public void SqveInSql() => 
             SQL.InteractingSql($"DELETE FROM {item.GetNameTable()} WHERE {item.GetHeadDataGrid().NameInSql[0]} = {values[0]}");

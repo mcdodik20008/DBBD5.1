@@ -49,17 +49,14 @@ namespace DBBD51
 
             if (list[0].Text.Split().Length != 3)
                 tupl.Add(Tuple.Create(false, "Введите ФИО корректно"));
-
             if (!DateTime.TryParse(list[1].Text, out DateTime dT))
                 tupl.Add(Tuple.Create(false, "Не правильно ввели дату рождения"));
-
             if (list[2].Text.Length != 11 || !long.TryParse(list[2].Text, out long l))
                 tupl.Add(Tuple.Create(false, "Не правильно ввели телефон"));
-
             if (!(
                 (list[3].Text.Split(' ', '/').Length == 2 || list[3].Text.Split(' ', '/').Length == 3) 
                     && int.TryParse(list[3].Text.Split(' ', '/')[1], out int i))
-                    )
+                 )
                 tupl.Add(Tuple.Create(false, "Введите адрес корректно"));
 
             foreach (var t in tupl)

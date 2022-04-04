@@ -27,8 +27,6 @@ namespace DBBD51
             new List<string> { "id_zap", "fk_libCard", "fk_book", "", "", "", "fk_whoV", "", "dateV", "fk_whoS", "", "dateS"}
             );
 
-        
-
         public EAbonement(int pk, int fkLk, int fkBook, string nameBook, int fkAuthor, string nameAuthor, 
             int fkV, string nameV, DateTime dateV, int? fkS, string nameS, DateTime? dateS)
         {
@@ -62,6 +60,5 @@ namespace DBBD51
                 DateS != null ? "'" + DateS.ToString().Substring(0, 10) + "'" : "NULL"};
         
         public bool IsGood() => isGood;
-
     }
 }

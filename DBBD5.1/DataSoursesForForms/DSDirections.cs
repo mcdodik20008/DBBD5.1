@@ -10,6 +10,7 @@ namespace DBBD51
         private IEnumerable<IEitem> dataSourse;
         private List<Control> textAndComboBox;
         public int GetMaxId() => SQL.maxIndex("SELECT MAx(id_napr) + 1 From InSy.dbo.Directions");
+
         public IDataSourse Update() => new DSDirections(textAndComboBox);
 
         public DSDirections(List<Control> textAndComboBox)

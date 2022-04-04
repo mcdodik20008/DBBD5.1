@@ -19,7 +19,9 @@ namespace DBBD51
             new List<bool> { false, true, true, false, true },
             new List<string> { "id_book", "bookName", "dateRelease", "fk_author", "" }
             );
+
         public string GetNameTable() => "InSy.dbo.Book";
+
         public EBook(int pk, string nameBook, DateTime dateRelise, int fkAuthor, string nameAuthor)
         {
             Pk = pk;

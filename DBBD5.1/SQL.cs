@@ -12,11 +12,9 @@ namespace DBBD51
             connection.Open();
             var command = new SqlCommand(sqlExpression, connection);
             var reader = command.ExecuteReader();
-
             var table = new List<List<string>>();
             var row = new List<string>();
             int nRows = reader.FieldCount;
-
             if (reader.HasRows)
             {
                 while (reader.Read())
@@ -33,10 +31,8 @@ namespace DBBD51
             connection.Close();
             return table;
         }
-        public static int maxIndex(string command)
-        {
-            return int.Parse(ReadSql(command).ToList()[0].ToList()[0]);
-        }
+
+        public static int maxIndex(string command) => int.Parse(ReadSql(command).ToList()[0].ToList()[0]);
 
         //действия с таблицой - сохранение итд
         public static void InteractingSql(string sqlExpression)

@@ -11,7 +11,9 @@ namespace DBBD51
         private IEnumerable<IEitem> dataSourse;
         private int currentId;
         private List<Control> textAndComboBox;
+
         public int GetMaxId() => SQL.maxIndex("SELECT MAX(id_zap) From InSy.dbo.Subscription");
+
         public IDataSourse Update() => new DSAbonement(currentId, textAndComboBox);
 
         public DSAbonement(int currentId, List<Control> textAndComboBox)
@@ -79,6 +81,7 @@ namespace DBBD51
                          t2[2]}; //дата сдачи   
             }
         }
+
         public static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
         {
             foreach (var item in data)

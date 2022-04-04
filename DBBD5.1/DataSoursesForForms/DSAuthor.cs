@@ -11,7 +11,9 @@ namespace DBBD51
         private List<ComboBoxItems> ComboBoxOnForm = new List<ComboBoxItems>();
         private IEnumerable<IEitem> dataSourse;
         private List<Control> textAndComboBox;
+
         public int GetMaxId() => SQL.maxIndex("SELECT MAx(id_Author) From InSy.dbo.Author");
+
         public IDataSourse Update() => new DSAuthor(textAndComboBox);
 
         public DSAuthor(List<Control> textAndComboBox)

@@ -8,10 +8,9 @@ namespace DBBD51
     public class Book : DefultForm
     {
         static HeadDataGrid inBaseConstructor = EBook.HeadDataGrid;
-        public Book() : base(inBaseConstructor)
-        {
-            InitializeComponent();
-        }
+
+        public Book() : base(inBaseConstructor) => InitializeComponent();
+        
 
         private void InitializeComponent()
         {

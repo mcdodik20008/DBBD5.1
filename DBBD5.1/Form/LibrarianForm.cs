@@ -8,6 +8,7 @@ namespace DBBD51
     public class LibrarianForm : DefultForm
     {
         static HeadDataGrid inBaseConstructor = ELibrarian.HeadDataGrid;
+
         public LibrarianForm() : base(inBaseConstructor) => InitializeComponent();
 
         private void InitializeComponent()
@@ -32,16 +33,12 @@ namespace DBBD51
         internal override bool IsInputDontHaveErrors(List<Control> list)
         {
             List<Tuple<bool, string>> tupl = new List<Tuple<bool, string>>();
-
             if (list[0].Text.Split().Length != 3)
                 tupl.Add(Tuple.Create(false, "Введите ФИО корректно"));
-
             if (!DateTime.TryParse(list[1].Text, out DateTime dT))
                 tupl.Add(Tuple.Create(false, "Не правильно ввели дату рождения"));
-
             foreach (var t in tupl)
                 MessageBox.Show(t.Item2, "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             return tupl.Count == 0;
         }
     }
