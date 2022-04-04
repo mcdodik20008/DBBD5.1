@@ -16,14 +16,12 @@ namespace DBBD51
         internal List<string> aboutCurrent = new List<string>(); //в датагриде
         internal int nVisible;
         internal int currentId = 1; // если не выберут в ДГ и нажмут на подробнее, то я решил не выдавать МесажеБохе, а просто открывать первого
-        internal List<ComboBoxItems> forSave = new List<ComboBoxItems>();  //лист списков итемов конкретного комбобоха
-        internal Stack<ICommand> Commands = new Stack<ICommand>();// дублирование элементов датагрида в виде \\неСтрок//
+        internal Stack<ICommand> Commands = new Stack<ICommand>();// дублирование действий с датагридом
         internal IDataSourse DataSourse;
 
-        internal abstract void FillingComboBox(List<ComboBoxItems> xx); // заполняю для каждой отдельно
         internal abstract void Form_Load(object sender, EventArgs e);
-        internal abstract IEitem NewIEitem(); //нужно для кнопки change, собираем данные с техт и комбо бохов, создаем новый объект с которым удобнее работать
-        internal abstract bool IsInputDontHaveErrors(List<Control> TextAndComboBox);
+        internal abstract IEitem NewIEitem();//как убрать? //нужно для кнопки change, собираем данные с техт и комбо бохов, создаем новый объект с которым удобнее работать
+        internal abstract bool IsInputDontHaveErrors(List<Control> TextAndComboBox); //наверное завтра уберу
 
         public DefultForm(HeadDataGrid headDataGrid)
         {
@@ -98,6 +96,7 @@ namespace DBBD51
                 var n = 0;
                 if (dataGrid.CurrentRow != null)
                     n = dataGrid.CurrentRow.Index;
+                
                 var x = new NewLine();
                 x.Command(dataGrid);
                 Commands.Push(x);
@@ -183,6 +182,8 @@ namespace DBBD51
                     dataGrid.Rows[i].Cells[n++].Value = valueProperty != null ? valueProperty : null;
                 i += 1;
             }
+            if (dataGrid.Rows.Count != 0)
+                dataGrid.Rows[0].Selected = true;
         }
 
         // нужно для создания нового итема, получаю список сток из комбобоксов. В дочерних формах станет понятно
@@ -201,7 +202,7 @@ namespace DBBD51
             foreach (var item in TextAndComboBox)
             {
                 if (item is ComboBox cB)
-                    foreach (var val in forSave[n++][cB.SelectedIndex].GetValue())
+                    foreach (var val in DataSourse.GetDataComboBoxs()[n++][cB.SelectedIndex].GetValue())
                         outt.Add(val);
                 if (item is TextBox tB)
                     outt.Add(tB.Text != "" ? tB.Text : "0");

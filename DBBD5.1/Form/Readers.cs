@@ -32,16 +32,8 @@ namespace DBBD51
         internal override void Form_Load(object sender, EventArgs e)
         {
             dataGrid.Location = new Point(10, 10);
-            DataSourse = new DSReaders();
+            DataSourse = new DSReaders(TextAndComboBox);
             FillingDatagrid(DataSourse.GetRows());
-            dataGrid.Rows[0].Selected = true;
-            FillingComboBox(forSave);
-        }
-
-        internal override void FillingComboBox(List<ComboBoxItems> itemsInCombobox)
-        {
-            itemsInCombobox.Add(new ComboBoxItems());
-            (TextAndComboBox[4] as ComboBox).FillBooksDirections(itemsInCombobox[0]);
         }
 
         internal override IEitem NewIEitem()

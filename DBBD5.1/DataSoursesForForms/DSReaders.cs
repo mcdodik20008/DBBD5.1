@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace DBBD51
 {
     public class DSReaders : IDataSourse
     {
+        private List<ComboBoxItems> ComboBoxOnForm = new List<ComboBoxItems>();
         private IEnumerable<IEitem> dataSourse;
+        private List<Control> textAndComboBox;
 
         public int GetMaxId() => SQL.maxIndex("SELECT Max(id_Lk) From InSy.dbo.LibraryCard");
 
-        public IDataSourse Update() => new DSReaders();
+        public IDataSourse Update() => new DSReaders(textAndComboBox);
 
-        public DSReaders()
+        public DSReaders(List<Control> textAndComboBox)
         {
+            this.textAndComboBox = textAndComboBox;
             dataSourse = TransformData(getDataFromSql());
+            ComboBoxOnForm.Add(new ComboBoxItems());
+            (textAndComboBox[4] as ComboBox).FillBooksDirections(ComboBoxOnForm[0]);
         }
 
         public IEnumerable<IEitem> GetRows()
@@ -43,5 +49,6 @@ namespace DBBD51
                 )
             );
 
+        public List<ComboBoxItems> GetDataComboBoxs() => ComboBoxOnForm;
     }
 }

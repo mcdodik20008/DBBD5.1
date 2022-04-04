@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace DBBD51
 {
     public class DSAbonement : IDataSourse
     {
+        private List<ComboBoxItems> ComboBoxOnForm = new List<ComboBoxItems>();
         private IEnumerable<IEitem> dataSourse;
         private int currentId;
+        private List<Control> textAndComboBox;
         public int GetMaxId() => SQL.maxIndex("SELECT MAX(id_zap) From InSy.dbo.Subscription");
-        public IDataSourse Update() => new DSAbonement(currentId);
+        public IDataSourse Update() => new DSAbonement(currentId, textAndComboBox);
 
-        public DSAbonement(int currentId)
+        public DSAbonement(int currentId, List<Control> textAndComboBox)
         {
             this.currentId = currentId;
+            this.textAndComboBox = textAndComboBox;
             dataSourse = TransformData(getDataFromSql(currentId));
+            for (int i = 0; i < 3; i++)
+                ComboBoxOnForm.Add(new ComboBoxItems());
+            (textAndComboBox[0] as ComboBox).FillingAutors(ComboBoxOnForm[0], currentId);
+            (textAndComboBox[2] as ComboBox).FillLibrarian(ComboBoxOnForm[1]);
+            (textAndComboBox[4] as ComboBox).FillLibrarian(ComboBoxOnForm[2]);
         }
 
         public IEnumerable<IEitem> GetRows()
@@ -101,5 +110,7 @@ namespace DBBD51
                         dateS); //дата сдачи
             }
         }
+
+        public List<ComboBoxItems> GetDataComboBoxs() => ComboBoxOnForm;
     }
 }

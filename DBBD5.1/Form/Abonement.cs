@@ -42,20 +42,9 @@ namespace DBBD51
 
         internal override void Form_Load(object sender, EventArgs e)
         {
-            DataSourse = new DSAbonement(currentId);
+            DataSourse = new DSAbonement(currentId, TextAndComboBox);
             FillingDatagrid(DataSourse.GetRows());
-            FillingComboBox(forSave);
-
             AddControls();
-        }
-
-        internal override void FillingComboBox(List<ComboBoxItems> xx)
-        {
-            for (int i = 0; i < 3; i++)
-                xx.Add(new ComboBoxItems());
-            (TextAndComboBox[0] as ComboBox).FillingAutors(xx[0], currentId);
-            (TextAndComboBox[2] as ComboBox).FillLibrarian(xx[1]);
-            (TextAndComboBox[4] as ComboBox).FillLibrarian(xx[2]);
         }
 
         internal void InicializeChangeCB()
@@ -64,15 +53,15 @@ namespace DBBD51
             c1.SelectedIndexChanged += (sender, Empty) =>
             {
                 if (TextAndComboBox[1] is TextBox tB
-                    && forSave[0][c1.SelectedIndex] is ComboBoxItemBook cBB)
+                    && DataSourse.GetDataComboBoxs()[0][c1.SelectedIndex] is ComboBoxItemBook cBB)
                     tB.Text = cBB.NameAut;
             };
 
             var c2 = TextAndComboBox[2] as ComboBox;
             c2.SelectedIndexChanged += (sender, Empty) =>
             {
-                if (TextAndComboBox[3] is TextBox tB && 
-                forSave[1][c2.SelectedIndex] is ComboBoxItemLibrarian cBB)
+                if (TextAndComboBox[3] is TextBox tB &&
+                DataSourse.GetDataComboBoxs()[1][c2.SelectedIndex] is ComboBoxItemLibrarian cBB)
                     if (tB.Text == "" || tB.Text == null)
                         tB.Text = DateTime.Now.ToString().Substring(0, 10);
             };
@@ -81,7 +70,7 @@ namespace DBBD51
             c3.SelectedIndexChanged += (sender, Empty) =>
             {
                 if (TextAndComboBox[5] is TextBox tB &&
-                forSave[2][c3.SelectedIndex] is ComboBoxItemLibrarian cBB)
+                DataSourse.GetDataComboBoxs()[2][c3.SelectedIndex] is ComboBoxItemLibrarian cBB)
                 {
                     if (tB.Text == "" || tB.Text == null)
                         tB.Text = DateTime.Now.ToString().Substring(0, 10);

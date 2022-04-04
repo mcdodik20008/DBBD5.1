@@ -13,19 +13,17 @@ namespace DBBD51
             InitializeComponent();
         }
 
+        internal override void Form_Load(object sender, EventArgs e)
+        {
+            DataSourse = new DSDirections(TextAndComboBox);
+            FillingDatagrid(DataSourse.GetRows());
+        }
+
         private void InitializeComponent()
         {
             TextAndComboBox.Add(InicialItem.TextBox());
             AddControls();
         }
-
-        internal override void Form_Load(object sender, EventArgs e)
-        {
-            DataSourse = new DSDirections();
-            FillingDatagrid(DataSourse.GetRows());
-        }
-
-        internal override void FillingComboBox(List<ComboBoxItems> xx) { }
 
         internal override IEitem NewIEitem()
         {
@@ -34,5 +32,7 @@ namespace DBBD51
         }
 
         internal override bool IsInputDontHaveErrors(List<Control> list) => true;
+
+
     }
 }

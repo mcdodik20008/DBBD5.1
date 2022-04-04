@@ -23,15 +23,8 @@ namespace DBBD51
 
         internal override void Form_Load(object sender, EventArgs e)
         {
-            DataSourse = new DSBook();
+            DataSourse = new DSBook(TextAndComboBox);
             FillingDatagrid(DataSourse.GetRows());
-            FillingComboBox(forSave);
-        }
-
-        internal override void FillingComboBox(List<ComboBoxItems> xx)
-        {
-            xx.Add(new ComboBoxItems());
-            (TextAndComboBox[2] as ComboBox).FillBooksAuthors(xx[0]);
         }
 
         internal override IEitem NewIEitem()

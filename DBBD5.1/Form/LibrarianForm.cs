@@ -19,11 +19,9 @@ namespace DBBD51
 
         internal override void Form_Load(object sender, EventArgs e)
         {
-            DataSourse = new DSLibrarian();
+            DataSourse = new DSLibrarian(TextAndComboBox);
             FillingDatagrid(DataSourse.GetRows());
         }
-
-        internal override void FillingComboBox(List<ComboBoxItems> xx) { }
 
         internal override IEitem NewIEitem()
         {
