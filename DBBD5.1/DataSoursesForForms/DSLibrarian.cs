@@ -25,13 +25,7 @@ namespace DBBD51
 
         private IEnumerable<IEnumerable<string>> getDataFromSql() => SQL.ReadSql(@"select * from InSy.dbo.Librarian");  
 
-        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
-        {
-            foreach (var item in data)
-            {
-                var x = item.ToList();
-                yield return new ELibrarian(int.Parse(x.ToList()[0]), x.ToList()[1], DateTime.Parse(x.ToList()[2]));
-            }
-        }
+        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data) =>
+             data.Select(x => new ELibrarian(int.Parse(x.ElementAt(0)), x.ElementAt(1), DateTime.Parse(x.ElementAt(2))));
     }
 }

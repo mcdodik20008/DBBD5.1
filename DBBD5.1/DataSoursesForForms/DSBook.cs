@@ -29,14 +29,8 @@ namespace DBBD51
             return SQL.ReadSql(book);
         }
 
-        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
-        {
-            foreach (var item in data)
-            {
-                var x = item.ToList();
-                yield return new EBook(int.Parse(x.ToList()[0]), x.ToList()[1], 
-                    new DateTime(int.Parse(x.ToList()[2]), 1, 1), int.Parse(x.ToList()[3]), x.ToList()[4]);
-            }
-        }
+        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data) => data
+            .Select(x => new EBook(int.Parse(x.ElementAt(0)), x.ElementAt(1),
+                    new DateTime(int.Parse(x.ElementAt(2)), 1, 1), int.Parse(x.ElementAt(3)), x.ElementAt(4)));
     }
 }

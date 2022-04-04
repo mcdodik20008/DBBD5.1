@@ -18,14 +18,13 @@ namespace DBBD51
             for (int i = 0; i < 4; i++)
                 TextAndComboBox.Add(InicialItem.TextBox());
             TextAndComboBox.Add(new ComboBox());
-            var x1 = InicialItem.TextBox();
-            x1.Enabled = false;
-            TextAndComboBox.Add(x1);
-            var x2 = InicialItem.TextBox();
-            x2.Enabled = false;
-            TextAndComboBox.Add(x2);
+            var t2 = new TextBox() { Enabled = false };
+            var t1 = new TextBox() { Enabled = false };
+
+            TextAndComboBox.Add(t1);
+            TextAndComboBox.Add(t2);
             var button = InicialItem.Button("Подробнее");
-            button.Click += (sender, args) => { new Abonement(currentId, aboutCurrent).ShowDialog(); FillingDatagrid(DataSourse.Update().GetRows());};
+            button.Click += (sender, args) => { new Abonement(currentId, aboutCurrent).ShowDialog(); FillingDatagrid(DataSourse.Update().GetRows()); };
             Buttons.Add(button);
             AddControls();
         }

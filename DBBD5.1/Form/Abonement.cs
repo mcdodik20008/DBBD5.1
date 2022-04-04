@@ -105,55 +105,41 @@ namespace DBBD51
 
         internal void InicializeChangeCB()
         {
-            int n = 0;
-            for (int i = 0; i < TextAndComboBox.Count(); i++)
+            var c1 = TextAndComboBox[0] as ComboBox;
+            c1.SelectedIndexChanged += (sender, Empty) =>
             {
-                if (TextAndComboBox[i] is ComboBox cB)
+                if (TextAndComboBox[1] is TextBox tB
+                    && forSave[0][c1.SelectedIndex] is ComboBoxItemBook cBB)
                 {
-                    if (n == 0)
-                    {
-                        cB.SelectedIndexChanged += (sender, Empty) =>
-                        {
-                            if (TextAndComboBox[1] is TextBox tB
-                                && forSave[0][cB.SelectedIndex] is ComboBoxItemBook cBB)
-                            {
-                                tB.Text = cBB.NameAut;
-                            }
-                        }; 
-                    }
-
-                    if (n == 1)
-                    {
-                        cB.SelectedIndexChanged += (sender, Empty) =>
-                        {
-                            if (TextAndComboBox[3] is TextBox tB
-                                && forSave[1][cB.SelectedIndex] is ComboBoxItemLibrarian cBB)
-                            {
-                                if (tB.Text == "" || tB.Text == null)
-                                {
-                                    tB.Text = DateTime.Now.ToString().Substring(0, 10);
-                                }
-                            }
-                        };
-                    }
-
-                    if (n == 2)
-                    {
-                        cB.SelectedIndexChanged += (sender, Empty) =>
-                        {
-                            if (TextAndComboBox[5] is TextBox tB
-                                && forSave[2][cB.SelectedIndex] is ComboBoxItemLibrarian cBB)
-                            {
-                                if ((cB.Text != "" || tB.Text == null) && (tB.Text == "" || tB.Text == null))
-                                {
-                                    tB.Text = DateTime.Now.ToString().Substring(0, 10);
-                                }
-                            }
-                        };
-                    }
-                    n++;
+                    tB.Text = cBB.NameAut;
                 }
-            }
+            };
+
+            var c2 = TextAndComboBox[2] as ComboBox;
+            c2.SelectedIndexChanged += (sender, Empty) =>
+            {
+                if (TextAndComboBox[3] is TextBox tB
+                    && forSave[1][c2.SelectedIndex] is ComboBoxItemLibrarian cBB)
+                {
+                    if (tB.Text == "" || tB.Text == null)
+                    {
+                        tB.Text = DateTime.Now.ToString().Substring(0, 10);
+                    }
+                }
+            };
+
+            var c3 = TextAndComboBox[4] as ComboBox;
+            c3.SelectedIndexChanged += (sender, Empty) =>
+            {
+                if (TextAndComboBox[5] is TextBox tB
+                    && forSave[2][c3.SelectedIndex] is ComboBoxItemLibrarian cBB)
+                {
+                    if (tB.Text == "" || tB.Text == null)
+                    {
+                        tB.Text = DateTime.Now.ToString().Substring(0, 10);
+                    }
+                }
+            };
         }
 
         internal override IEitem NewIEitem()

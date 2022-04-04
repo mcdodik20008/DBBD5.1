@@ -23,14 +23,8 @@ namespace DBBD51
         }
 
         private IEnumerable<IEnumerable<string>> getDataFromSql() => SQL.ReadSql(@"select * from InSy.dbo.Author");
-        
-        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
-        {
-            foreach (var item in data)
-            {
-                var x = item.ToList();
-                yield return new EAuthor(int.Parse(x[0]), x[1], DateTime.Parse(x[2]));
-            }
-        }
+
+        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data) => data
+            .Select(x => new EAuthor(int.Parse(x.ElementAt(0)), x.ElementAt(1), DateTime.Parse(x.ElementAt(2))));
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBBD51
 {
@@ -25,13 +22,7 @@ namespace DBBD51
 
         private IEnumerable<IEnumerable<string>> getDataFromSql() => SQL.ReadSql(@"select * from InSy.dbo.Directions");
 
-        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
-        {
-            foreach (var item in data)
-            {
-                var x = item.ToList();
-                yield return new EDirections(int.Parse(x[0]), x[1]);
-            }
-        }
+        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data) => data
+            .Select(x => new EDirections(int.Parse(x.First()), x.Last()));
     }
 }

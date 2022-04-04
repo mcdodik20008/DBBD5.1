@@ -33,15 +33,15 @@ namespace DBBD51
             return SQL.ReadSql(readers);
         }
 
-        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
-        {
-            foreach (var item in data)
-            {
-                var x = item.ToList();
-                yield return new EReaders(int.Parse(x.ToList()[0]), x.ToList()[1], DateTime.Parse(x.ToList()[2]),
-                    x.ToList()[3], x.ToList()[4], int.Parse(x.ToList()[5]), x.ToList()[6],
-                    int.Parse(x.ToList()[7]), int.Parse(x.ToList()[8]));
-            }
-        }
+        private static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data) => data
+            .Select(x => 
+                new EReaders
+                (
+                    int.Parse(x.ElementAt(0)), x.ElementAt(1), DateTime.Parse(x.ElementAt(2)),
+                    x.ElementAt(3), x.ElementAt(4), int.Parse(x.ElementAt(5)), x.ElementAt(6),
+                    int.Parse(x.ElementAt(7)), int.Parse(x.ElementAt(8))
+                )
+            );
+
     }
 }
