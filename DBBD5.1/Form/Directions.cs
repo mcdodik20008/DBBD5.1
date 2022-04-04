@@ -25,7 +25,7 @@ namespace DBBD51
             FillingDatagrid(DataSourse.GetRows());
         }
 
-        internal override void FillingComboBox(List<List<IComboBoxItem>> xx) { }
+        internal override void FillingComboBox(List<ComboBoxItems> xx) { }
 
         internal override IEitem NewIEitem()
         {

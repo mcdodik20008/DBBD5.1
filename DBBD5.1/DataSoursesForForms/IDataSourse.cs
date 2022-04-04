@@ -7,5 +7,6 @@ namespace DBBD51
         IEnumerable<IEitem> GetRows();
         int GetMaxId();
        IDataSourse Update();
+
     }
 }

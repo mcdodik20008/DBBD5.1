@@ -23,36 +23,15 @@ namespace DBBD51
 
         internal override void Form_Load(object sender, EventArgs e)
         {
-            string book = @"select id_book, bookName, dateRelease, fk_author, fullNameAuthor
-                            from InSy.dbo.Book
-                            join InSy.dbo.Author ON  fk_author = id_Author";
             DataSourse = new DSBook();
             FillingDatagrid(DataSourse.GetRows());
             FillingComboBox(forSave);
         }
 
-        internal override void FillingComboBox(List<List<IComboBoxItem>> xx)
+        internal override void FillingComboBox(List<ComboBoxItems> xx)
         {
-            foreach (var item in TextAndComboBox)
-            {
-                if (item is ComboBox comboBox)
-                {
-                    xx.Add(new List<IComboBoxItem>());
-                    FillBooksAuthors(comboBox, xx[0]);
-                }
-            }
-        }
-
-        private void FillBooksAuthors(ComboBox comboBox, List<IComboBoxItem> comboBoxItems)
-        {
-            string command = @"SELECT id_Author, fullNameAuthor
-                                From InSy.dbo.Author";
-            foreach (var item in SQL.ReadSql(command))
-            {
-                var t = item.ToList();
-                comboBoxItems.Add(new ComboBoxItemAuthor(int.Parse(t[0]), t[1]));
-                comboBox.Items.Add(t[1]);
-            }
+            xx.Add(new ComboBoxItems());
+            (TextAndComboBox[2] as ComboBox).FillBooksAuthors(xx[0]);
         }
 
         internal override IEitem NewIEitem()

@@ -12,6 +12,7 @@ namespace DBBD51
         static HeadDataGrid inBaseConstructor = EAbonement.HeadDataGrid;
 
         public Abonement(int currentId, List<string> aboutReader) : base(inBaseConstructor) => InitializeComponent(currentId, aboutReader);
+
         private void InitializeComponent(int currentId, List<string> aboutReader)
         {
             this.aboutReader = aboutReader;
@@ -48,59 +49,13 @@ namespace DBBD51
             AddControls();
         }
 
-
-
-        internal override void FillingComboBox(List<List<IComboBoxItem>> xx)
+        internal override void FillingComboBox(List<ComboBoxItems> xx)
         {
-            int counter = 0;
-            foreach (var item in TextAndComboBox)
-            {
-                if (item is ComboBox comboBox)
-                {
-                    switch (counter)
-                    {
-                        case 0:
-                            xx.Add(new List<IComboBoxItem>());
-                            FillBooksAuthors(comboBox, xx[counter++]);
-                            break;
-                        case 1:
-                            xx.Add(new List<IComboBoxItem>());
-                            FillLibrarian(comboBox, xx[counter++]);
-                            break;
-                        case 2:
-                            xx.Add(new List<IComboBoxItem>());
-                            FillLibrarian(comboBox, xx[counter++]);
-                            break;
-                    }
-                }
-            }
-        }
-
-        private void FillBooksAuthors(ComboBox comboBox, List<IComboBoxItem> comboBoxItems)
-        {
-            string command = @"SELECT id_book, bookName, fk_author, fullNameAuthor
-	                            From InSy.dbo.Book
-	                            JOIN InSy.dbo.Author ON  fk_author = id_Author";
-            foreach (var item in SQL.ReadSql(command))
-            {
-                var t = item.ToList();
-                comboBoxItems.Add(new ComboBoxItemBook(currentId, int.Parse(t[0]), t[1], int.Parse(t[2]), t[3]));
-                comboBox.Items.Add(t[1]);
-            }
-        }
-
-        private void FillLibrarian(ComboBox comboBox, List<IComboBoxItem> comboBoxItems)
-        {
-            string command = @"SELECT id_Librarian, fullName
-                                From InSy.dbo.Librarian";
-            comboBoxItems.Add(new ComboBoxItemLibrarian(null, null));
-            comboBox.Items.Add("");
-            foreach (var item in SQL.ReadSql(command))
-            {
-                var t = item.ToList();
-                comboBoxItems.Add(new ComboBoxItemLibrarian(int.Parse(t[0]), t[1]));
-                comboBox.Items.Add(t[1]);
-            }
+            for (int i = 0; i < 3; i++)
+                xx.Add(new ComboBoxItems());
+            (TextAndComboBox[0] as ComboBox).FillingAutors(xx[0], currentId);
+            (TextAndComboBox[2] as ComboBox).FillLibrarian(xx[1]);
+            (TextAndComboBox[4] as ComboBox).FillLibrarian(xx[2]);
         }
 
         internal void InicializeChangeCB()
@@ -110,34 +65,27 @@ namespace DBBD51
             {
                 if (TextAndComboBox[1] is TextBox tB
                     && forSave[0][c1.SelectedIndex] is ComboBoxItemBook cBB)
-                {
                     tB.Text = cBB.NameAut;
-                }
             };
 
             var c2 = TextAndComboBox[2] as ComboBox;
             c2.SelectedIndexChanged += (sender, Empty) =>
             {
-                if (TextAndComboBox[3] is TextBox tB
-                    && forSave[1][c2.SelectedIndex] is ComboBoxItemLibrarian cBB)
-                {
+                if (TextAndComboBox[3] is TextBox tB && 
+                forSave[1][c2.SelectedIndex] is ComboBoxItemLibrarian cBB)
                     if (tB.Text == "" || tB.Text == null)
-                    {
                         tB.Text = DateTime.Now.ToString().Substring(0, 10);
-                    }
-                }
             };
 
             var c3 = TextAndComboBox[4] as ComboBox;
             c3.SelectedIndexChanged += (sender, Empty) =>
             {
-                if (TextAndComboBox[5] is TextBox tB
-                    && forSave[2][c3.SelectedIndex] is ComboBoxItemLibrarian cBB)
+                if (TextAndComboBox[5] is TextBox tB &&
+                forSave[2][c3.SelectedIndex] is ComboBoxItemLibrarian cBB)
                 {
                     if (tB.Text == "" || tB.Text == null)
-                    {
                         tB.Text = DateTime.Now.ToString().Substring(0, 10);
-                    }
+                    if (c3.SelectedIndex == 0) tB.Text = "";
                 }
             };
         }

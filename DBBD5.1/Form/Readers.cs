@@ -38,29 +38,10 @@ namespace DBBD51
             FillingComboBox(forSave);
         }
 
-        internal override void FillingComboBox(List<List<IComboBoxItem>> xx)
+        internal override void FillingComboBox(List<ComboBoxItems> itemsInCombobox)
         {
-            foreach (var item in TextAndComboBox)
-            {
-                if (item is ComboBox comboBox)
-                {
-                    xx.Add(new List<IComboBoxItem>());
-                    FillBooksDirections(comboBox, xx[0]);
-                }
-            }
-        }
-
-        private void FillBooksDirections(ComboBox comboBox, List<IComboBoxItem> comboBoxItems)
-        {
-            string command = @"SELECT id_napr, name
-                                From InSy.dbo.Directions";
-            comboBox.Items.Clear();
-            foreach (var item in SQL.ReadSql(command))
-            {
-                var t = item.ToList();
-                comboBoxItems.Add(new ComboBoxItemAuthor(int.Parse(t[0]), t[1]));
-                comboBox.Items.Add(t[1]);
-            }
+            itemsInCombobox.Add(new ComboBoxItems());
+            (TextAndComboBox[4] as ComboBox).FillBooksDirections(itemsInCombobox[0]);
         }
 
         internal override IEitem NewIEitem()

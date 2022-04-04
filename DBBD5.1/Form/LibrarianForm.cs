@@ -8,10 +8,7 @@ namespace DBBD51
     public class LibrarianForm : DefultForm
     {
         static HeadDataGrid inBaseConstructor = ELibrarian.HeadDataGrid;
-        public LibrarianForm() : base(inBaseConstructor)
-        {
-            InitializeComponent();
-        }
+        public LibrarianForm() : base(inBaseConstructor) => InitializeComponent();
 
         private void InitializeComponent()
         {
@@ -26,7 +23,7 @@ namespace DBBD51
             FillingDatagrid(DataSourse.GetRows());
         }
 
-        internal override void FillingComboBox(List<List<IComboBoxItem>> xx) { }
+        internal override void FillingComboBox(List<ComboBoxItems> xx) { }
 
         internal override IEitem NewIEitem()
         {

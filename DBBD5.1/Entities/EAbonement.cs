@@ -62,5 +62,6 @@ namespace DBBD51
                 DateS != null ? "'" + DateS.ToString().Substring(0, 10) + "'" : "NULL"};
         
         public bool IsGood() => isGood;
+
     }
 }

@@ -16,29 +16,14 @@ namespace DBBD51
         internal List<string> aboutCurrent = new List<string>(); //в датагриде
         internal int nVisible;
         internal int currentId = 1; // если не выберут в ДГ и нажмут на подробнее, то я решил не выдавать МесажеБохе, а просто открывать первого
-        internal List<List<IComboBoxItem>> forSave = new List<List<IComboBoxItem>>();  //лист списков итемов конкретного комбобоха
+        internal List<ComboBoxItems> forSave = new List<ComboBoxItems>();  //лист списков итемов конкретного комбобоха
         internal Stack<ICommand> Commands = new Stack<ICommand>();// дублирование элементов датагрида в виде \\неСтрок//
         internal IDataSourse DataSourse;
 
-        internal abstract void FillingComboBox(List<List<IComboBoxItem>> xx); // заполняю для каждой отдельно
+        internal abstract void FillingComboBox(List<ComboBoxItems> xx); // заполняю для каждой отдельно
         internal abstract void Form_Load(object sender, EventArgs e);
         internal abstract IEitem NewIEitem(); //нужно для кнопки change, собираем данные с техт и комбо бохов, создаем новый объект с которым удобнее работать
         internal abstract bool IsInputDontHaveErrors(List<Control> TextAndComboBox);
-
-        internal void FillingDatagrid<T>(IEnumerable<T> collection)
-            where T : IEitem
-        {
-            dataGrid.Rows.Clear();
-            var i = 0;
-            foreach (var item in collection)
-            {
-                var n = 0;
-                dataGrid.Rows.Add();
-                foreach (var valueProperty in item.GetListValForDataGrid())              
-                    dataGrid.Rows[i].Cells[n++].Value = valueProperty != null ? valueProperty : null;
-                i += 1;
-            }
-        }
 
         public DefultForm(HeadDataGrid headDataGrid)
         {
@@ -77,6 +62,7 @@ namespace DBBD51
                 Buttons.Add(InicialItem.Button(item));
             DefoultButtonsClcikInitialize();
         }
+
         private void DefoultButtonsClcikInitialize()
         {
             //удалить 
@@ -153,8 +139,6 @@ namespace DBBD51
             };
         }
 
-
-
         //сзязываение текс и кб с дадагридом
         internal void RelationDataGridAndControls(object sender, EventArgs args)
         {
@@ -186,6 +170,21 @@ namespace DBBD51
             }
         }
 
+        internal void FillingDatagrid<T>(IEnumerable<T> collection)
+            where T : IEitem
+        {
+            dataGrid.Rows.Clear();
+            var i = 0;
+            foreach (var item in collection)
+            {
+                var n = 0;
+                dataGrid.Rows.Add();
+                foreach (var valueProperty in item.GetListValForDataGrid())
+                    dataGrid.Rows[i].Cells[n++].Value = valueProperty != null ? valueProperty : null;
+                i += 1;
+            }
+        }
+
         // нужно для создания нового итема, получаю список сток из комбобоксов. В дочерних формах станет понятно
         public List<string> GetValuesFromTextAndComboBox()
         {
@@ -202,12 +201,8 @@ namespace DBBD51
             foreach (var item in TextAndComboBox)
             {
                 if (item is ComboBox cB)
-                {
-                    int i = cB.SelectedIndex;
-                    foreach (var val in forSave[n][i].GetValue())
+                    foreach (var val in forSave[n++][cB.SelectedIndex].GetValue())
                         outt.Add(val);
-                    n++;
-                }
                 if (item is TextBox tB)
                     outt.Add(tB.Text != "" ? tB.Text : "0");
             }
