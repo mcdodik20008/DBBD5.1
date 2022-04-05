@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace DBBD51
 {
-    class DSAuthor : IDataSourse
+    public class DSAuthor : IDataSourse
     {
         private List<ComboBoxItems> ComboBoxOnForm = new List<ComboBoxItems>();
         private IEnumerable<IEitem> dataSourse;

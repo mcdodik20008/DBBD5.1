@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace DBBD51
 {
     public class EAuthor : IEitem
-    {        
+    {
         public static HeadDataGrid HeadDataGrid = new HeadDataGrid(
-            new List<string> { "id_Author", "ФИО", "Дата рождения" },
-            new List<bool> { false, true, true },
-            new List<string> { "id_Author", "fullNameAuthor", "dateBirth" }
-            );
+        new List<string> { "id_Author", "ФИО", "Дата рождения" },
+        new List<bool> { false, true, true },
+        new List<string> { "id_Author", "fullNameAuthor", "dateBirth" }
+        );
 
         public int PK;
         public string FIO;
