@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace DBBD51
@@ -23,9 +22,15 @@ namespace DBBD51
 
             TextAndComboBox.Add(t1);
             TextAndComboBox.Add(t2);
-            var button = InicialItem.Button("Подробнее");
-            button.Click += (sender, args) => { new Abonement(currentId, aboutCurrent).ShowDialog(); FillingDatagrid(DataSourse.Update().GetRows()); };
-            Buttons.Add(button);
+            var button1 = InicialItem.Button("Поиск");
+            button1.Click += (sender, args) => 
+            { 
+                var sr = new Search(DataSourse, dataGrid).ShowDialog(); 
+            };
+            var button2 = InicialItem.Button("Подробнее");
+            button2.Click += (sender, args) => { new Abonement(currentId, aboutCurrent).ShowDialog(); dataGrid.FillingDatagrid(DataSourse.Update().GetRows()); };
+            Buttons.Add(button1);
+            Buttons.Add(button2);
             AddControls();
         }
 
@@ -33,7 +38,7 @@ namespace DBBD51
         {
             dataGrid.Location = new Point(10, 10);
             DataSourse = new DSReaders(TextAndComboBox);
-            FillingDatagrid(DataSourse.GetRows());
+            dataGrid.FillingDatagrid(DataSourse.GetRows());
         }
 
         internal override IEitem NewIEitem()

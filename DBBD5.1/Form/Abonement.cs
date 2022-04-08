@@ -40,7 +40,7 @@ namespace DBBD51
         internal override void Form_Load(object sender, EventArgs e)
         {
             DataSourse = new DSAbonement(currentId, TextAndComboBox);
-            FillingDatagrid(DataSourse.GetRows());
+            dataGrid.FillingDatagrid(DataSourse.GetRows());
             AddControls();
         }
 
@@ -78,10 +78,14 @@ namespace DBBD51
         {
             var outt = GetValuesFromTextAndComboBox();
             int? fk = null;
-            if (outt[9] != null && outt[9] != "") fk = int.Parse(outt[9]);
-
             DateTime? dT = null;
-            if (outt[9] != null && outt[9] != "") dT = DateTime.Parse(outt[11]);
+            if (outt[9] != null && outt[9] != "") 
+                fk = int.Parse(outt[9]);
+
+            if (outt[9] != null && outt[9] != "") 
+                dT = DateTime.Parse(outt[11]);
+
+            if (outt.Count == 0) return new EAbonement();
             return new EAbonement(int.Parse(outt[0]), int.Parse(outt[1]), int.Parse(outt[2]), outt[3], 
                 int.Parse(outt[4]), outt[5], int.Parse(outt[6]), outt[7], DateTime.Parse(outt[8]), fk, outt[10], dT);
         }

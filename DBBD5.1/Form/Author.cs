@@ -21,12 +21,13 @@ namespace DBBD51
         internal override void Form_Load(object sender, EventArgs e)
         {
             DataSourse = new DSAuthor(TextAndComboBox);
-            FillingDatagrid(DataSourse.GetRows());
+            dataGrid.FillingDatagrid(DataSourse.GetRows());
         }
 
         internal override IEitem NewIEitem()
         {
             var outt = GetValuesFromTextAndComboBox();
+            if (outt.Count == 0) return new EAuthor();
             return new EAuthor(int.Parse(outt[0]), outt[1], DateTime.Parse(outt[2]));
         }
 

@@ -15,7 +15,7 @@ namespace DBBD51
         internal override void Form_Load(object sender, EventArgs e)
         {
             DataSourse = new DSDirections(TextAndComboBox);
-            FillingDatagrid(DataSourse.GetRows());
+            dataGrid.FillingDatagrid(DataSourse.GetRows());
         }
 
         private void InitializeComponent()
@@ -27,6 +27,7 @@ namespace DBBD51
         internal override IEitem NewIEitem()
         {
             var outt = GetValuesFromTextAndComboBox();
+            if (outt.Count == 0) return new EDirections();
             return new EDirections(int.Parse(outt[0]), outt[1]);
         }
 

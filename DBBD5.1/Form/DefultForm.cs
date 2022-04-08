@@ -162,22 +162,6 @@ namespace DBBD51
             }
         }
 
-        internal void FillingDatagrid<T>(IEnumerable<T> collection)
-            where T : IEitem
-        {
-            dataGrid.Rows.Clear();
-            var i = 0;
-            foreach (var item in collection)
-            {
-                var n = 0;
-                dataGrid.Rows.Add();
-                foreach (var valueProperty in item.GetListValForDataGrid())
-                    dataGrid.Rows[i].Cells[n++].Value = valueProperty != null ? valueProperty : null;
-                i += 1;
-            }
-            if (dataGrid.Rows.Count != 0)
-                dataGrid.Rows[0].Selected = true;
-        }
 
         // нужно для создания нового итема, получаю список сток из комбобоксов. В дочерних формах станет понятно
         public List<string> GetValuesFromTextAndComboBox()

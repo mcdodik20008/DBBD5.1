@@ -18,7 +18,7 @@ namespace DBBD51
         public DSReaders(List<Control> textAndComboBox)
         {
             this.textAndComboBox = textAndComboBox;
-            dataSourse = TransformData(getDataFromSql());
+            dataSourse = TransformData(getDataFromSql()).OrderBy(x => x.GetListValForDataGrid()[1]);
             ComboBoxOnForm.Add(new ComboBoxItems());
             (textAndComboBox[4] as ComboBox).FillBooksDirections(ComboBoxOnForm[0]);
         }
