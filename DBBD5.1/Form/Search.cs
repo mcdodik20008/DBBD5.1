@@ -15,6 +15,7 @@ namespace DBBD51
         private TextBox textBox3;
         private Label label1;
         private Label label2;
+        private DataGridView dataGridView1;
         private Label label3;
         
         public Search(IDataSourse dataSourse, DataGridView dG)
@@ -47,64 +48,91 @@ namespace DBBD51
 
         public void InitializeComponent()
         {
-            button1 = new Button()
-            {
-                Location = new Point(12, 117),
-                Size = new Size(260, 52),
-                Text = "Найти",
-            };
-            textBox1 = new TextBox()
-            {
-                Location = new Point(121, 18),
-                Size = new Size(151, 23),
-                Text = "Не включено в поиск"
-            };
-            textBox2 = new TextBox()
-            {
-                Location = new Point(121, 47),
-                Size = new Size(151, 23),
-                Text = "Не включено в поиск"
-            };
-            textBox3 = new TextBox()
-            {
-                Location = new Point(121, 81),
-                Size = new Size(151, 23),
-                Text = "Не включено в поиск"
-            };
-            label1 = new Label()
-            {
-                Location = new Point(12, 26),
-                Size = new Size(95, 15),
-                Text = "Номер клиента:"
-            };
-            label2 = new Label()
-            {
-                Location = new Point(70, 55),
-                Size = new Size(37, 15),
-                Text = "Номер клиента:"
-            };
-            label3 = new Label()
-            {
-                Location = new Point(23, 84),
-                Size = new Size(84, 15),
-                Text = "Направление:"
-            };
-            SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 5;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(0, 0);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 23);
+            this.textBox2.TabIndex = 4;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(0, 0);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 23);
+            this.textBox3.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 23);
+            this.label3.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 29);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // Search
+            // 
+            this.ClientSize = new System.Drawing.Size(300, 220);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button1);
+            this.Name = "Search";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-            //contorls
-            {
-                ClientSize = new Size(300, 220);
-                Controls.Add(this.label3);
-                Controls.Add(this.label2);
-                Controls.Add(this.label1);
-                Controls.Add(this.textBox3);
-                Controls.Add(this.textBox2);
-                Controls.Add(this.textBox1);
-                Controls.Add(this.button1);
-                Name = "Search";
-                ResumeLayout(false);
-                PerformLayout();
-            }
         }
     }
 }

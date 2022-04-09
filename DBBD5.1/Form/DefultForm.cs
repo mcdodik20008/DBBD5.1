@@ -99,6 +99,10 @@ namespace DBBD51
                 Commands.Push(x);
                 Buttons[1].Enabled = true;
                 Buttons[5].Enabled = false;
+                foreach (DataGridViewRow item in dataGrid.Rows)
+                    item.Selected = false;
+                dataGrid.Rows[dataGrid.Rows.Count - 1].Selected = true;
+                RelationDataGridAndControls(dataGrid, EventArgs.Empty);
                 // чищу TextAndComboBox
                 foreach (var item in TextAndComboBox)
                 {
@@ -110,6 +114,7 @@ namespace DBBD51
                         cB.Text = "";
                     }
                 }
+
             };
             //изменить
             Buttons[4].Click += (sender, args) =>
