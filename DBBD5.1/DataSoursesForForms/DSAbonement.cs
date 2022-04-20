@@ -36,41 +36,20 @@ namespace DBBD51
 
         private IEnumerable<IEnumerable<string>> getDataFromSql(int currentId)
         {
+            string getMoreInfo = @"SELECT id_zap, fk_book, bookName, id_Author, fullnameAuthor, fk_whoV, B1.fullName, dateV, fk_whoS,B2.fullName, dateS
+                                   From InSy.dbo.Subscription
+                                   JOIN InSy.dbo.Book ON id_book = fk_book
+                                   JOIN InSy.dbo.Author ON id_book = fk_book and fk_author = id_Author
+                                   JOIN InSy.dbo.Librarian AS B1 ON fk_whoV = B1.id_Librarian
+                                   Left JOIN InSy.dbo.Librarian As B2 ON fk_whoS = B2.id_Librarian " +
+                                   $"where fk_libCard = {currentId}";
 
-
-            //почти вся информация, кроме библиотекоря, который принял книгу
-            string getMoreInfo = @"SELECT id_zap, fk_book, bookName, id_Author, fullnameAuthor, fk_whoV, fullName, dateV, fk_whoS, dateS
-	                            From InSy.dbo.Subscription
-	                            JOIN InSy.dbo.Book ON id_book = fk_book
-	                            JOIN InSy.dbo.Author ON id_book = fk_book and fk_author = id_Author
-	                            JOIN InSy.dbo.Librarian ON fk_whoV = id_Librarian " +
-                                $"where fk_libCard = {currentId}";
-
-            //библиотекарь, который принял книгу
-            string getWhoS = @"SELECT id_zap, fullName
-                            FROM InSy.dbo.Subscription
-                            JOIN InSy.dbo.Librarian ON fk_whoS = id_Librarian " +
-                            $"where fk_libCard = {currentId}";
-
-            //лучше не вчитываться в то, что ниже о_0
-            var tS = SQL.ReadSql(getWhoS).ToList();
-            var pTable = SQL.ReadSql(getMoreInfo).ToList();
-
-            foreach (List<string> item in pTable)
+            foreach (List<string> item in SQL.ReadSql(getMoreInfo))
             {
                 item.Insert(1, currentId.ToString());
-                item.Insert(10, MyFind(item[0], tS));
                 yield return item;
             }
-        }
-        public string MyFind(string indexZap, IEnumerable<IEnumerable<string>> list)
-        //ищу по ид записи, беру первую(Единственную) подходящую строку, и там беру фио библиотекаря.
-        {
-            if (list == null || list.Count() == 0) return "";
-            var t =  list.Where(x => x.First() == indexZap).FirstOrDefault();
-            return t == null ? "" : t.Last();
-        }
-        
+        }  
 
         public static IEnumerable<IEitem> TransformData(IEnumerable<IEnumerable<string>> data)
         {

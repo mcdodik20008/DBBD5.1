@@ -19,7 +19,7 @@ namespace DBBD51
             var NewBook = InicialItem.Button("Добавить книгу", DockStyle.Fill);
             var Author = InicialItem.Button("Авторы", DockStyle.Fill);
             var ItogVid = InicialItem.Button("Итоги выдачи", DockStyle.Fill);
-            var ItogBibl = InicialItem.Button("Итоги библиотекари", DockStyle.Fill);
+            var ItogBookB = InicialItem.Button("Итоги книги", DockStyle.Fill);
             var thief = InicialItem.Button("Должники", DockStyle.Fill);
 
             var table = new TableLayoutPanel();
@@ -40,7 +40,7 @@ namespace DBBD51
             table.Controls.Add(Author, 1, 2);
 
             table.Controls.Add(ItogVid, 2, 0);
-            table.Controls.Add(ItogBibl, 2, 1);
+            table.Controls.Add(ItogBookB, 2, 1);
             table.Controls.Add(thief, 2, 2);
 
             table.Dock = DockStyle.Fill;
@@ -52,7 +52,7 @@ namespace DBBD51
             BookBtn.Click += (sender, args) => new Book().ShowDialog();
             Author.Click += (sender, args) => new Author().ShowDialog();
             Directions.Click += (sender, args) => new Directions().ShowDialog();
-
+            ItogBookB.Click += (sender, args) => new ItogBook().ShowDialog();
             //чтобы не зависало при первом открытии форм
             string connectionString = @"Data Source=KOMPYTER-ALEKSE\SQLEXPRESS;Initial Catalog=InSy;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
