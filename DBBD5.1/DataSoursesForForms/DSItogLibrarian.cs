@@ -4,26 +4,22 @@ using System.Linq;
 
 namespace DBBD51
 {
-    class DSItogBook : IDataSourse
+    class DSItogLibrarian : IDataSourse
     {
         private IEnumerable<IEitem> dataSourse;
 
-        public DSItogBook()
+        public DSItogLibrarian()
         {
-            var sql = @"select bookName, dateRelease, fullNameAuthor, (select count(fk_book) from InSy.dbo.Subscription where id_book = fk_book)
-                        from InSy.dbo.Book
-                        join InSy.dbo.Author on fk_author = id_Author";
+            var sql = @"select fullName, dateBirth, 
+                            (select count(fk_book) from InSy.dbo.Subscription where id_Librarian = fk_whoV),
+                            (select count(fk_book) from InSy.dbo.Subscription where id_Librarian = fk_whoS)
+                        from InSy.dbo.Librarian";
             dataSourse = TransformData(getDataFromSql(sql));
         }
 
-        DSItogBook(DateTime left, DateTime right)
+        DSItogLibrarian(DateTime left, DateTime right)
         {
-            var sql = @"select bookName, dateRelease, fullNameAuthor, 
-                                (select count(fk_book) 
-                                   from InSy.dbo.Subscription " +
-                                   $"where id_book = fk_book and dateV Between  '{left.ToShortDateString()}' and '{right.ToShortDateString()}') " +
-                        @"from InSy.dbo.Book
-                        join InSy.dbo.Author on fk_author = id_Author";
+            var sql = @"";
             dataSourse = TransformData(getDataFromSql(sql));
         }
 
@@ -45,10 +41,14 @@ namespace DBBD51
 
         public int GetMaxId() => 0;
 
-        public IEnumerable<IEitem> GetRows() => dataSourse.Select(x => x);
+        public IEnumerable<IEitem> GetRows()
+        {
+            foreach (var item in dataSourse)
+                yield return item;
+        }
 
         public IDataSourse Update() => new DSItogBook();
 
-        public IDataSourse Update(DateTime l, DateTime r) => new DSItogBook(l, r);
+        public IDataSourse Update(DateTime l, DateTime r) => new DSItogLibrarian(l, r);
     }
 }

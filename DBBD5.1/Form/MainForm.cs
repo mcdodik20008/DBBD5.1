@@ -45,14 +45,14 @@ namespace DBBD51
 
             table.Dock = DockStyle.Fill;
             Controls.Add(table);
-
-            // посмотрите диаграмму классов
+            
             Librarian.Click += (sender, args) => new LibrarianForm().ShowDialog();
             Abonement.Click += (sender, args) => new Readers().ShowDialog();
             BookBtn.Click += (sender, args) => new Book().ShowDialog();
             Author.Click += (sender, args) => new Author().ShowDialog();
             Directions.Click += (sender, args) => new Directions().ShowDialog();
             ItogBookB.Click += (sender, args) => new ItogBook().ShowDialog();
+            ItogVid.Click += (Sender, args) => new ItogLibrarian().ShowDialog();
             //чтобы не зависало при первом открытии форм
             string connectionString = @"Data Source=KOMPYTER-ALEKSE\SQLEXPRESS;Initial Catalog=InSy;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);

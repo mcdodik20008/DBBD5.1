@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace DBBD51
 {
-    public class ItogBook : Form
+    public class ItogLibrarian : Form
     {
         private DataGridView dataGridView1;
         private DateTimePicker dateTimePicker1;
@@ -21,10 +21,10 @@ namespace DBBD51
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
-        private DSItogBook dSItogBook;
-        public ItogBook()
+        private DSItogLibrarian dSItogBook;
+        public ItogLibrarian()
         {
-            dSItogBook = new DSItogBook();
+            dSItogBook = new DSItogLibrarian();
             InitializeComponent();
             dataGridView1.FillingDatagrid(dSItogBook.GetRows());
         }
