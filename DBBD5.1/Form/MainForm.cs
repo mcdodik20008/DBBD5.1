@@ -16,11 +16,11 @@ namespace DBBD51
             var BookBtn = InicialItem.Button("Книги", DockStyle.Fill);
             var Abonement = InicialItem.Button("Читательские билеты", DockStyle.Fill);
             var Directions = InicialItem.Button("Направления", DockStyle.Fill);
-            var NewBook = InicialItem.Button("Добавить книгу", DockStyle.Fill);
+            var NewBook = InicialItem.Button("", DockStyle.Fill);
             var Author = InicialItem.Button("Авторы", DockStyle.Fill);
             var ItogVid = InicialItem.Button("Итоги выдачи", DockStyle.Fill);
             var ItogBookB = InicialItem.Button("Итоги книги", DockStyle.Fill);
-            var thief = InicialItem.Button("Должники", DockStyle.Fill);
+            var thief = InicialItem.Button("???", DockStyle.Fill);
 
             var table = new TableLayoutPanel();
             table.RowStyles.Clear();

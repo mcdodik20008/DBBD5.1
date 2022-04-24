@@ -19,7 +19,12 @@ namespace DBBD51
 
         DSItogLibrarian(DateTime left, DateTime right)
         {
-            var sql = @"";
+            var sql = @"select fullName, dateBirth,  
+                        	(select count(fk_book) from InSy.dbo.Subscription " + 
+                        		$"where id_Librarian = fk_whoV and dateV Between  '{left.ToShortDateString()}' and '{right.ToShortDateString()}'), " +
+                        	@" (select count(fk_book) from InSy.dbo.Subscription " +
+                        		$" where id_Librarian = fk_whoS and dateS Between  '{left.ToShortDateString()}' and '{right.ToShortDateString()}') " +
+                        @" from InSy.dbo.Librarian";
             dataSourse = TransformData(getDataFromSql(sql));
         }
 
