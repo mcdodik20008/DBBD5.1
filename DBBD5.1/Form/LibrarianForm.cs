@@ -9,7 +9,7 @@ namespace DBBD51
     {
         static HeadDataGrid inBaseConstructor = ELibrarian.HeadDataGrid;
 
-        public LibrarianForm() : base(inBaseConstructor) => InitializeComponent();
+        public LibrarianForm() : base(inBaseConstructor, "Библиотекари") => InitializeComponent();
 
         private void InitializeComponent()
         {

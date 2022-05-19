@@ -9,7 +9,7 @@ namespace DBBD51
     {
         static HeadDataGrid inBaseConstructor = EAuthor.HeadDataGrid;
 
-        public Author() : base(inBaseConstructor) => InitializeComponent();
+        public Author() : base(inBaseConstructor, "Авторы") => InitializeComponent();
 
         private void InitializeComponent()
         {

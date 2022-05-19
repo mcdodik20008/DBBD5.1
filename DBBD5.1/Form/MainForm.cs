@@ -11,6 +11,7 @@ namespace DBBD51
             Height = 300;
             MinimumSize = new Size(350, 250);
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "Главная форма";
 
             var Librarian = InicialItem.Button("Библиотекари", DockStyle.Fill);
             var BookBtn = InicialItem.Button("Книги", DockStyle.Fill);
@@ -20,7 +21,7 @@ namespace DBBD51
             var Author = InicialItem.Button("Авторы", DockStyle.Fill);
             var ItogVid = InicialItem.Button("Итоги выдачи", DockStyle.Fill);
             var ItogBookB = InicialItem.Button("Итоги книги", DockStyle.Fill);
-            var thief = InicialItem.Button("???", DockStyle.Fill);
+            var thief = InicialItem.Button("", DockStyle.Fill);
 
             var table = new TableLayoutPanel();
             table.RowStyles.Clear();
@@ -33,10 +34,10 @@ namespace DBBD51
 
             table.Controls.Add(Librarian, 0, 0);
             table.Controls.Add(BookBtn, 0, 1);
-            table.Controls.Add(Abonement, 0, 2);
+            table.Controls.Add(NewBook, 0, 2);
 
             table.Controls.Add(Directions, 1, 0);
-            table.Controls.Add(NewBook, 1, 1);
+            table.Controls.Add(Abonement, 1, 1);
             table.Controls.Add(Author, 1, 2);
 
             table.Controls.Add(ItogVid, 2, 0);

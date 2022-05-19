@@ -24,6 +24,7 @@ namespace DBBD51
         private DSItogBook dSItogBook;
         public ItogBook()
         {
+            Text = "Итоги выдачи книг";
             dSItogBook = new DSItogBook();
             InitializeComponent();
             dataGridView1.FillingDatagrid(dSItogBook.GetRows());

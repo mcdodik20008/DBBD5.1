@@ -9,7 +9,7 @@ namespace DBBD51
     {
         static HeadDataGrid inBaseConstructor = EBook.HeadDataGrid;
 
-        public Book() : base(inBaseConstructor) => InitializeComponent();
+        public Book() : base(inBaseConstructor, "Книги") => InitializeComponent();
         
 
         private void InitializeComponent()

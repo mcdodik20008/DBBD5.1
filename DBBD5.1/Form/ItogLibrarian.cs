@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DBBD51
@@ -24,6 +20,7 @@ namespace DBBD51
         private DSItogLibrarian dSItogBook;
         public ItogLibrarian()
         {
+            Text = "Итоги выдачи библиотекарей";
             dSItogBook = new DSItogLibrarian();
             InitializeComponent();
             dataGridView1.FillingDatagrid(dSItogBook.GetRows());

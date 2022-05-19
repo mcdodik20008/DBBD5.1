@@ -23,7 +23,7 @@ namespace DBBD51
         internal abstract IEitem NewIEitem();//как убрать? //нужно для кнопки change, собираем данные с техт и комбо бохов, создаем новый объект с которым удобнее работать
         internal abstract bool IsInputDontHaveErrors(List<Control> TextAndComboBox); //наверное завтра уберу
 
-        public DefultForm(HeadDataGrid headDataGrid)
+        public DefultForm(HeadDataGrid headDataGrid, string name)
         {
             //действия с формой
             Width = 800;
@@ -31,7 +31,7 @@ namespace DBBD51
             MinimumSize = new Size(400, 380);
             MaximumSize = new Size(1600, 900);
             StartPosition = FormStartPosition.CenterScreen;
-
+            Text = name;
             //Стандартные кнопки
             InitializeDefoultButtons();
             InitializeComponent(headDataGrid);

@@ -9,7 +9,7 @@ namespace DBBD51
     {
         static HeadDataGrid inBaseConstructor = EDirections.HeadDataGrid;
 
-        public Directions() : base(inBaseConstructor) => InitializeComponent();
+        public Directions() : base(inBaseConstructor, "Направления") => InitializeComponent();
         
 
         internal override void Form_Load(object sender, EventArgs e)

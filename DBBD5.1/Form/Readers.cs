@@ -7,7 +7,7 @@ namespace DBBD51
 {
     public class Readers : DefultForm
     {
-        public Readers() : base(EReaders.HeadDataGrid)
+        public Readers() : base(EReaders.HeadDataGrid, "Читатели")
         {
             InitializeComponent();
         }

@@ -10,8 +10,8 @@ namespace DBBD51
     {
         List<string> aboutReader;
         static HeadDataGrid inBaseConstructor = EAbonement.HeadDataGrid;
-
-        public Abonement(int currentId, List<string> aboutReader) : base(inBaseConstructor) => InitializeComponent(currentId, aboutReader);
+        
+        public Abonement(int currentId, List<string> aboutReader) : base(inBaseConstructor, "Читательские билет") => InitializeComponent(currentId, aboutReader);
 
         private void InitializeComponent(int currentId, List<string> aboutReader)
         {

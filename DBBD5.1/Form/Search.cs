@@ -20,6 +20,7 @@ namespace DBBD51
         
         public Search(IDataSourse dataSourse, DataGridView dG)
         {
+            Text = "Поиск";
             InitializeComponent();
             this.dG = dG;
             this.dataSourse = dataSourse.Update();
